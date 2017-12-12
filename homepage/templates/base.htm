@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <head>
 
-        <title>TwitWit | Intelligent Twitter Predictor</title>
+        <title>TwitWit&reg; | Smart Twitter Scheduler</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
         ## add any site-wide scripts or CSS here; for example, jquery:
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
+
 
         ## render the static file links with the same name as this template
         <script src="/django_mako_plus/dmp-common.min.js"></script>
@@ -22,16 +22,22 @@
             <nav class="navbar navbar-light bg-faded">
                     <a class="navbar-brand" href="#">
                         <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                        TwitWit &#8482; 
+                        TwitWit&reg; <span style="font-size: 60%">by XLR8 Development</span>
                     </a>
             </nav>
         </header>
-        
+
         <main>
             <%block name="content">
-                
+
             </%block>
         </main>
+
+        <footer>
+          <div class="text-center" style="font-size:80%; position: fixed; bottom: 30px; width: 100%">
+            TwitWit&reg; is proudly powered by <a href="https://www.xlr8dev.com">XLR8 Development</a>
+          </div>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
