@@ -1,5 +1,53 @@
 <%inherit file="base_ajax.htm" />
 
 <%block name="content">
-    ${ main_result }
+    <div class="text-center results">
+      Your ideal tweet time is:
+      <br />
+      <div class="result_time">
+        <strong>${ result_time }</strong>
+      </div>
+      <div class="result_date">
+        ${ result_date }
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="text-center">
+      <h4> Full Results </h4>
+      <br />
+      <table class="table">
+        <tr>
+          <th>MON</th>
+          <th>TUE</th>
+          <th>WED</th>
+          <th>THU</th>
+          <th>FRI</th>
+          <th>SAT</th>
+          <th>SUN</th>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+          <td>7</td>
+        </tr>
+      </table>
+    </div>
+
+
 </%block>

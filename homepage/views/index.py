@@ -39,7 +39,8 @@ def process_request(request):
 @view_function
 def recommendations(request):
     context = {
-        'main_result' : 'You should post your tweet at 4:00pm!',
+        'result_time' : '4:00PM',
+        'result_date' : 'WED, 12/14/2017',
     }
     return request.dmp_render('index.recommendations.html', context)
 
