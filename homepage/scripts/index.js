@@ -20,3 +20,13 @@ $("#id_tweet").on('input', function(){
       $('#charNum').css('color', '#ff0000');
     }
 });
+
+
+// update button
+// $('.btn.btn-primary').click(function() {
+//     $('#ajax_test').load('/homepage/index.recommendations');
+// });
+
+$('#formlib-inputform').ajaxForm({
+    target: '#ajax_test',
+});

@@ -23,7 +23,7 @@ def process_request(request):
     if form.is_valid():
         form.commit()
         messages.success(request, 'Your text was submitted.')
-        return HttpResponseRedirect('/homepage/index')
+        return HttpResponseRedirect('/homepage/index.recommendations')
 
     context = {
         # sent to index.html:
@@ -32,7 +32,16 @@ def process_request(request):
         jscontext('utc_epoch'): utc_time.timestamp(),
         'form': form,
     }
+
     return request.dmp_render('index.html', context)
+
+
+@view_function
+def recommendations(request):
+    context = {
+        'main_result' : 'You should post your tweet at 4:00pm!',
+    }
+    return request.dmp_render('index.recommendations.html', context)
 
 
 class InputForm(FormMixIn, forms.Form):
