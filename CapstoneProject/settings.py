@@ -26,7 +26,10 @@ SECRET_KEY = '7v!3)9))_*aalysogsh76tkq2evhdkguxs&@a&+p=zd8*q%*6h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'twitwit.xlr8dev.com',
+    
+]
 
 
 # Application definition
