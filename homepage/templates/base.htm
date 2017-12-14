@@ -20,10 +20,18 @@
 
         <header>
             <nav class="navbar navbar-light bg-faded">
-                    <a class="navbar-brand" href="#">
-                        <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    <a class="navbar-brand" href="index">
+                        <!-- <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
                         TwitWit&reg; <span style="font-size: 60%">by XLR8 Development</span>
                     </a>
+                    <ul class="nav justify-content-end form-inline">
+                      <li class="nav-item">
+                        <a class="nav-link" href="data">The Data</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="team">Meet the Team</a>
+                      </li>
+                    </ul>
             </nav>
         </header>
 
@@ -33,15 +41,16 @@
             </%block>
         </main>
 
-        <footer>
+        <!-- <footer>
           <div class="text-center" style="font-size:80%; position: fixed; bottom: 30px; width: 100%">
             TwitWit&reg; is proudly powered by <a href="https://www.xlr8dev.com">XLR8 Development</a>
           </div>
-        </footer>
+        </footer> -->
         <!-- <script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
 
         <script src="${ STATIC_URL }homepage/media/jquery.loadmodal.js"></script>
         <script src="${ STATIC_URL }homepage/media/jquery.form.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
         <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

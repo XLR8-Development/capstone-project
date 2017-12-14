@@ -29,26 +29,19 @@
           <th>SAT</th>
           <th>SUN</th>
         </tr>
-        <tr>
-          <td>12:00AM</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td>1:00AM</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-          <td>7</td>
-        </tr>
+        %for time in full_results:
+          <tr>
+            <td>${time.hour}</td>
+            <td>${time.mon}</td>
+            <td>${time.tue}</td>
+            <td>${time.wed}</td>
+            <td>${time.thu}</td>
+            <td>${time.fri}</td>
+            <td>${time.sat}</td>
+            <td>${time.sun}</td>
+          </tr>
+        %endfor
+
       </table>
     </div>
 
