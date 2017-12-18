@@ -13,13 +13,16 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 import random
+import urllib
+# If you are using Python 3+, import urllib instead of urllib2
+import json 
+import requests
 
 @view_function
 def process_request(request):
     utc_time = datetime.utcnow()
 
     form = InputForm(request)
-
 
     if form.is_valid():
         form.commit()
@@ -119,3 +122,43 @@ class InputForm(FormMixIn, forms.Form):
         #             [to_email],
         #             fail_silently=False,
         #         )
+
+        data =  {
+
+            "Inputs": {
+
+                    "input1":
+                    {
+                        "ColumnNames": ["Weekday", "Hour", "IsReshare", "RetweetCount", "Country", "text"],
+                        "Values": [ [ "Friday", "10", "1", "0", "United States", "Justin Bieber is gay #metoo #blacklivesmatter" ], [ "value", "0", "0", "0", "value", "value" ], ]
+                    },        },
+                "GlobalParameters": {
+            }
+        }
+
+        body = str.encode(json.dumps(data))
+
+        url = 'https://ussouthcentral.services.azureml.net/workspaces/e77673311cc245378b2b51f3f40b5376/services/5be6e9a1fd1c41d083b3971868b14636/execute?api-version=2.0&details=true'
+        api_key = '6kRTG9BtU9QYRlqzFj0OhdyZ6+bXeJyKXdbV8lV0jGwon6IwCcM/BhHwEySG5h1WwsWAVY7EmJDg74d14nY3aA==' # Replace this with the API key for the web service
+        headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+
+        req = urllib.request.Request(url, body, headers) 
+
+        try:
+            response = urllib.request.urlopen(req)
+
+            # If you are using Python 3+, replace urllib2 with urllib.request in the above code:
+            # req = urllib.request.Request(url, body, headers) 
+            # response = urllib.request.urlopen(req)
+
+            result = response.read()
+            print(result) 
+        except urllib.request.HTTPError:
+            print("The request failed with status code: " + str(error.code))
+
+            # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+            print(error.info())
+
+            print(json.loads(error.read()))
+
+        return result
