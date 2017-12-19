@@ -189,6 +189,7 @@ def process_request(request):
         context = {
             'tweet':tweet,
             'resultDict': resultDict,
+            'daysList' :DaysList,
             'retweetCountRounded' : retweetCountRounded,
             'full_results' : DayDict,
             'primetime' : maxDict,
