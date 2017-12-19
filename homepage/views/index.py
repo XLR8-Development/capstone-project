@@ -15,7 +15,8 @@ from django.views.generic.edit import CreateView
 import random
 import urllib
 # If you are using Python 3+, import urllib instead of urllib2
-import json 
+import json
+from decimal import Decimal
 import requests
 
 @view_function
@@ -26,15 +27,98 @@ def process_request(request):
 
     if form.is_valid():
         form.commit()
-        messages.success(request, 'Your text was submitted.')
-        return HttpResponseRedirect('/homepage/index.recommendations')
+        formData = form.cleaned_data
+        tweet = formData['tweet']
+        hour = 0
+        hourDict = {}
+        DaysList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        DayDict = {}
+
+        # create all the variables and make all the api calls!
+        for day in DaysList:
+            # make call for each hour
+            while hour <= 23:
+
+            data =  {
+
+                "Inputs": {
+
+                        "input1":
+                        {
+                            "ColumnNames": ["Weekday", "Hour", "IsReshare", "RetweetCount", "Country", "text"],
+                            "Values": [ [ "Friday", hour, "1", "0", "United States", tweet ], [ "value", "0", "0", "0", "value", "value" ], ]
+                        },        },
+                    "GlobalParameters": {
+                }
+            }
+
+            body = str.encode(json.dumps(data))
+
+            url = 'https://ussouthcentral.services.azureml.net/workspaces/e77673311cc245378b2b51f3f40b5376/services/5be6e9a1fd1c41d083b3971868b14636/execute?api-version=2.0&details=true'
+            api_key = '6kRTG9BtU9QYRlqzFj0OhdyZ6+bXeJyKXdbV8lV0jGwon6IwCcM/BhHwEySG5h1WwsWAVY7EmJDg74d14nY3aA==' # Replace this with the API key for the web service
+            headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+
+            req = urllib.request.Request(url, body, headers) 
+
+            try:
+                response = urllib.request.urlopen(req)
+
+                # If you are using Python 3+, replace urllib2 with urllib.request in the above code:
+                # req = urllib.request.Request(url, body, headers) 
+                # response = urllib.request.urlopen(req)
+
+                result = response.read()
+                resultDict = json.loads(result)
+
+                retweetCount = str(resultDict['Results']['output1']['value']['Values'][0][0])
+                count = round(float(retweetCount))
+                retweetCountRounded = str(count)
+
+                print(retweetCount) 
+
+            except urllib.request.HTTPError:
+                print("The request failed with status code: " + str(error.code))
+
+                # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+                print(error.info())
+
+                print(json.loads(error.read()))
+
+
+            # store to dictionary
+            hourDict[hour] = retweetCountRounded
+            print('###### HOUR DICTIONARY: ' + str(hourDict))
+            # increment hour
+            hour += 1
+        
+        # store day of week and dictionary
+        
+
+
+        # time schtuff
+        TimeResultArray = []
+
+        for i in range(0,24):
+            tempResult = TimeResult(str(i) + ":00", random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100))
+            TimeResultArray.append(tempResult)
+
+        context = {
+            'tweet':tweet,
+            'resultDict': resultDict,
+            'retweetCountRounded' : retweetCountRounded,
+            'result_time' : '4:00PM',
+            'result_date' : 'WED, 12/14/2017',
+            'full_results' : TimeResultArray,
+        }
+
+        return request.dmp_render('results.html', context)
 
     context = {
         # sent to index.html:
         'utc_time': utc_time,
         # sent to index.html and index.js:
         jscontext('utc_epoch'): utc_time.timestamp(),
-        'form': form,
+        'form':form,
     }
 
     return request.dmp_render('index.html', context)
@@ -122,43 +206,3 @@ class InputForm(FormMixIn, forms.Form):
         #             [to_email],
         #             fail_silently=False,
         #         )
-
-        data =  {
-
-            "Inputs": {
-
-                    "input1":
-                    {
-                        "ColumnNames": ["Weekday", "Hour", "IsReshare", "RetweetCount", "Country", "text"],
-                        "Values": [ [ "Friday", "10", "1", "0", "United States", "Justin Bieber is gay #metoo #blacklivesmatter" ], [ "value", "0", "0", "0", "value", "value" ], ]
-                    },        },
-                "GlobalParameters": {
-            }
-        }
-
-        body = str.encode(json.dumps(data))
-
-        url = 'https://ussouthcentral.services.azureml.net/workspaces/e77673311cc245378b2b51f3f40b5376/services/5be6e9a1fd1c41d083b3971868b14636/execute?api-version=2.0&details=true'
-        api_key = '6kRTG9BtU9QYRlqzFj0OhdyZ6+bXeJyKXdbV8lV0jGwon6IwCcM/BhHwEySG5h1WwsWAVY7EmJDg74d14nY3aA==' # Replace this with the API key for the web service
-        headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
-
-        req = urllib.request.Request(url, body, headers) 
-
-        try:
-            response = urllib.request.urlopen(req)
-
-            # If you are using Python 3+, replace urllib2 with urllib.request in the above code:
-            # req = urllib.request.Request(url, body, headers) 
-            # response = urllib.request.urlopen(req)
-
-            result = response.read()
-            print(result) 
-        except urllib.request.HTTPError:
-            print("The request failed with status code: " + str(error.code))
-
-            # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
-            print(error.info())
-
-            print(json.loads(error.read()))
-
-        return result
