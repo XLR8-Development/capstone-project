@@ -20,3 +20,29 @@ main {
     margin: 0;
     padding: 15px;
 }
+
+strong {
+    color: red;
+}
+
+.panel {
+    background: rgba(201, 198, 198, 0.3);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(97, 95, 95, 0.21);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px;
+    color: black;
+}
+
+.panel-title a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.panel-title a:hover {
+    text-decoration: none;
+    color: #1377D5;
+}
