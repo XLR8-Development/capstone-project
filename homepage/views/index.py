@@ -18,6 +18,7 @@ import urllib
 import json
 from decimal import Decimal
 import requests
+import operator
 
 @view_function
 def process_request(request):
@@ -30,70 +31,153 @@ def process_request(request):
         formData = form.cleaned_data
         tweet = formData['tweet']
         hour = 0
-        hourDict = {}
-        DaysList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        MonDict = {}
+        TuesDict = {}
+        WedDict = {}
+        ThursDict = {}
+        FriDict = {}
+        SatDict = {}
+        SunDict = {}
+        DaysList = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         DayDict = {}
+        maxDict = {'Day': 'Monday', 'Hour': 0, 'RetweetCount': 0}
+        currentMax = 0
 
         # create all the variables and make all the api calls!
         for day in DaysList:
-            # make call for each hour
+            hour = 0
+            # make call for each hour 
             while hour <= 23:
 
-            data =  {
+                data =  {
 
-                "Inputs": {
+                    "Inputs": {
 
-                        "input1":
-                        {
-                            "ColumnNames": ["Weekday", "Hour", "IsReshare", "RetweetCount", "Country", "text"],
-                            "Values": [ [ "Friday", hour, "1", "0", "United States", tweet ], [ "value", "0", "0", "0", "value", "value" ], ]
-                        },        },
-                    "GlobalParameters": {
+                            "input1":
+                            {
+                                "ColumnNames": ["Weekday", "Hour", "IsReshare", "RetweetCount", "Country", "text"],
+                                "Values": [ [ day, hour, "1", "0", "United States", tweet ] ]
+                            },        },
+                        "GlobalParameters": {
+                    }
                 }
-            }
 
-            body = str.encode(json.dumps(data))
+                body = str.encode(json.dumps(data))
 
-            url = 'https://ussouthcentral.services.azureml.net/workspaces/e77673311cc245378b2b51f3f40b5376/services/5be6e9a1fd1c41d083b3971868b14636/execute?api-version=2.0&details=true'
-            api_key = '6kRTG9BtU9QYRlqzFj0OhdyZ6+bXeJyKXdbV8lV0jGwon6IwCcM/BhHwEySG5h1WwsWAVY7EmJDg74d14nY3aA==' # Replace this with the API key for the web service
-            headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+                url = 'https://ussouthcentral.services.azureml.net/workspaces/e77673311cc245378b2b51f3f40b5376/services/5be6e9a1fd1c41d083b3971868b14636/execute?api-version=2.0&details=true'
+                api_key = '6kRTG9BtU9QYRlqzFj0OhdyZ6+bXeJyKXdbV8lV0jGwon6IwCcM/BhHwEySG5h1WwsWAVY7EmJDg74d14nY3aA==' # Replace this with the API key for the web service
+                headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
 
-            req = urllib.request.Request(url, body, headers) 
+                req = urllib.request.Request(url, body, headers) 
 
-            try:
-                response = urllib.request.urlopen(req)
+                try:
+                    response = urllib.request.urlopen(req)
 
-                # If you are using Python 3+, replace urllib2 with urllib.request in the above code:
-                # req = urllib.request.Request(url, body, headers) 
-                # response = urllib.request.urlopen(req)
+                    # If you are using Python 3+, replace urllib2 with urllib.request in the above code:
+                    # req = urllib.request.Request(url, body, headers) 
+                    # response = urllib.request.urlopen(req)
 
-                result = response.read()
-                resultDict = json.loads(result)
+                    result = response.read()
+                    resultDict = json.loads(result)
 
-                retweetCount = str(resultDict['Results']['output1']['value']['Values'][0][0])
-                count = round(float(retweetCount))
-                retweetCountRounded = str(count)
+                    retweetCount = str(resultDict['Results']['output1']['value']['Values'][0][0])
+                    count = round(float(retweetCount))
+                    retweetCountRounded = count
 
-                print(retweetCount) 
+                    print(retweetCount) 
 
-            except urllib.request.HTTPError:
-                print("The request failed with status code: " + str(error.code))
+                except urllib.request.HTTPError:
+                    print("The request failed with status code: " + str(error.code))
 
-                # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
-                print(error.info())
+                    # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
+                    print(error.info())
 
-                print(json.loads(error.read()))
+                    print(json.loads(error.read()))
 
 
-            # store to dictionary
-            hourDict[hour] = retweetCountRounded
-            print('###### HOUR DICTIONARY: ' + str(hourDict))
-            # increment hour
-            hour += 1
+                # store to  appropriate dictionary
+                if day == "Monday":
+                    MonDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(MonDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Monday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+                elif day == "Tuesday":
+                    TuesDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(TuesDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Tuesday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+                elif day == "Wednesday":
+                    WedDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(WedDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Wednesday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+                elif day == "Thursday":
+                    ThursDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(ThursDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Thursday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+                elif day == "Friday":
+                    FriDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(FriDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Friday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+                elif day == "Saturday":
+                    SatDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(SatDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Saturday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+                elif day == "Sunday":
+                    SunDict[hour] = retweetCountRounded
+                    print('###### HOUR DICTIONARY: ' + str(SunDict))
+                    if retweetCountRounded > currentMax:
+                        currentMax = retweetCountRounded
+                        maxDict['Day'] = "Sunday"
+                        maxDict['Hour'] = hour
+                        maxDict['RetweetCount'] = currentMax
+
+                # hourDict[hour] = retweetCountRounded
+                 
+                # increment hour
+                hour += 1
         
-        # store day of week and dictionary
-        
+            # store day of week and dictionary
+            if day == "Monday":
+                DayDict[day] = MonDict
+            elif day == "Tuesday":
+                DayDict[day] = TuesDict
+            elif day == "Wednesday":
+                DayDict[day] = WedDict
+            elif day == "Thursday":
+                DayDict[day] = ThursDict
+            elif day == "Friday":
+                DayDict[day] = FriDict
+            elif day == "Saturday":
+                DayDict[day] = SatDict
+            elif day == "Sunday":
+                DayDict[day] = SunDict
 
+            print('###### DAY DICTIONARY: '+ str(DayDict))
+
+        # determine highest retweet count
+        print(str(maxDict))
 
         # time schtuff
         TimeResultArray = []
@@ -106,9 +190,15 @@ def process_request(request):
             'tweet':tweet,
             'resultDict': resultDict,
             'retweetCountRounded' : retweetCountRounded,
-            'result_time' : '4:00PM',
-            'result_date' : 'WED, 12/14/2017',
-            'full_results' : TimeResultArray,
+            'full_results' : DayDict,
+            'primetime' : maxDict,
+            'monday' : MonDict,
+            'tuesday' :TuesDict,
+            'wednesday' : WedDict,
+            'thursday' : ThursDict,
+            'friday' : FriDict,
+            'saturday' : SatDict,
+            'sunday' :SunDict,
         }
 
         return request.dmp_render('results.html', context)
