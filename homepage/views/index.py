@@ -51,7 +51,7 @@ def process_request(request):
         # create all the variables and make all the api calls!
         for day in DaysList:
             hour = 0
-            # make call for each hour 
+            # make call for each hour
             while hour <= 23:
 
                 data =  {
@@ -73,13 +73,13 @@ def process_request(request):
                 api_key = '6kRTG9BtU9QYRlqzFj0OhdyZ6+bXeJyKXdbV8lV0jGwon6IwCcM/BhHwEySG5h1WwsWAVY7EmJDg74d14nY3aA==' # Replace this with the API key for the web service
                 headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
 
-                req = urllib.request.Request(url, body, headers) 
+                req = urllib.request.Request(url, body, headers)
 
                 try:
                     response = urllib.request.urlopen(req)
 
                     # If you are using Python 3+, replace urllib2 with urllib.request in the above code:
-                    # req = urllib.request.Request(url, body, headers) 
+                    # req = urllib.request.Request(url, body, headers)
                     # response = urllib.request.urlopen(req)
 
                     result = response.read()
@@ -89,7 +89,7 @@ def process_request(request):
                     count = round(float(retweetCount))
                     retweetCountRounded = count
 
-                    print(retweetCount) 
+                    print(retweetCount)
 
                 except urllib.request.HTTPError as error:
                     print("The request failed with status code: " + str(error.code))
@@ -159,10 +159,10 @@ def process_request(request):
                         maxDict['RetweetCount'] = currentMax
 
                 # hourDict[hour] = retweetCountRounded
-                 
+
                 # increment hour
                 hour += 1
-        
+
             # store day of week and dictionary
             if day == "Monday":
                 DayDict[day] = MonDict

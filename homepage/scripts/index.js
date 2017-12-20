@@ -2,6 +2,7 @@
 
     // utc_epoch comes from index.py
     console.log('Current epoch in UTC is ' + context.utc_epoch);
+    $('.loader').hide();
 
 })(DMP_CONTEXT.get());
 
@@ -21,12 +22,11 @@ $("#id_tweet").on('input', function(){
     }
 });
 
+$('.btn.btn-primary').click(function() {
+  $('.loader').show();
+});
 
 // update button
 // $('.btn.btn-primary').click(function() {
 //     $('#ajax_test').load('/homepage/index.recommendations');
 // });
-
-$('#formlib-inputform').ajaxForm({
-    target: '#ajax_test',
-});
