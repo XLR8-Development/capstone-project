@@ -3,6 +3,79 @@
 <html>
     <meta charset="UTF-8">
     <head>
+      <script type="text/javascript" src="http://public.tableau.com/javascripts/api/tableau-2.0.0.min.js"></script>
+      <script type="text/javascript">
+        var workbook, activeSheet, viz, dashboard;
+
+      function initViz() {
+
+            var containerDiv = document.getElementById("tableauviz"),
+            url = "https://public.tableau.com/views/TwitWitTableau/TwitWitDashboard?:embed=y&:display_count=yes&publish=yes";
+
+
+            var options = {
+            width: 1100,
+            height: 700,
+            hideTabs: true,
+            hideToolbar: true,
+            onFirstInteractive: function () {
+              workbook = viz.getWorkbook();
+              activeSheet = workbook.getActiveSheet();
+              listenToMarksSelection();
+          }}
+
+            viz = new tableau.Viz(containerDiv, url, options);
+      };
+
+      function clearFilters() {
+        activeSheet.getWorksheets().get("Retweet By Reshare").applyFilterAsync(
+            "Country",
+            "",
+            tableau.FilterUpdateType.ALL);
+        activeSheet.getWorksheets().get("Retweet By Weekday").applyFilterAsync(
+            "Country",
+            "",
+            tableau.FilterUpdateType.ALL);
+        activeSheet.getWorksheets().get("Retweet By Hour").applyFilterAsync(
+            "Country",
+            "",
+            tableau.FilterUpdateType.ALL);
+      }
+
+      function filterUS() {
+        activeSheet.getWorksheets().get("Retweet By Reshare").applyFilterAsync(
+            "Country",
+            "United States",
+            tableau.FilterUpdateType.REPLACE);
+        activeSheet.getWorksheets().get("Retweet By Weekday").applyFilterAsync(
+            "Country",
+            "United States",
+            tableau.FilterUpdateType.REPLACE);
+        activeSheet.getWorksheets().get("Retweet By Hour").applyFilterAsync(
+            "Country",
+            "United States",
+            tableau.FilterUpdateType.REPLACE);
+
+      }
+
+      function filterother() {
+        clearFilters();
+        activeSheet.getWorksheets().get("Retweet By Reshare").applyFilterAsync(
+            "Country",
+            "United States",
+            tableau.FilterUpdateType.REMOVE);
+        activeSheet.getWorksheets().get("Retweet By Weekday").applyFilterAsync(
+            "Country",
+            "United States",
+            tableau.FilterUpdateType.REMOVE);
+        activeSheet.getWorksheets().get("Retweet By Hour").applyFilterAsync(
+            "Country",
+            "United States",
+            tableau.FilterUpdateType.REMOVE);
+
+      }
+
+      </script>
 
         <title>TwitWit&reg; | Smart Twitter Scheduler</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -18,7 +91,7 @@
         <link rel="icon" type="image/png" sizes="32x32"href="${ STATIC_URL }homepage/media/twitwitlogo-02.png">
 
     </head>
-    <body>
+    <body onload="initViz();">
 
         <header>
             <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="box-shadow:none;">
