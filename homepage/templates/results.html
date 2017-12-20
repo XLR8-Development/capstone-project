@@ -1,0 +1,137 @@
+<%inherit file="base.htm" />
+
+<%block name="content">
+    <div class="container">
+        <br>
+        <h1 class="text-center">Analysis Successful!</h1>
+        <br>
+        <div class="text-center">
+            <h5>Your ideal tweet time is:</h5>
+            <h3><strong>${primetime['Day']}</strong> @ <strong>${ primetime['Hour']}:00</strong></h3>
+            <br>
+            <h5>Your estimated retweet count is:</h5>
+            <h3><strong>${primetime['RetweetCount']}</strong></h3>
+        </div>
+        <br>
+        <h4 class="text-center"> Full Results </h4>
+        <br />
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">Sunday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            % for item in sunday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ sunday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse2">Monday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            % for item in monday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ monday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse3">Tuesday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            % for item in tuesday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ tuesday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse4">Wednesday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            % for item in wednesday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ wednesday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>   
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse5">Thursday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse">
+                            % for item in thursday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ thursday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse6">Friday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse6" class="panel-collapse collapse">
+                            % for item in friday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ friday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading d-flex justify-content-center">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse7">Saturday</a>
+                            </h4>
+                        </div>
+                        <div id="collapse7" class="panel-collapse collapse">
+                            % for item in saturday:
+                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ saturday[item] }</strong> </div>
+                            %endfor
+                        </div>
+                    </div>   
+            
+                </div>     
+            </div>
+
+        </div>
+
+    </div>
+    <!-- <table class="table">
+        <tr>
+        <th>Time</th>
+        <th>MON</th>
+        <th>TUE</th>
+        <th>WED</th>
+        <th>THU</th>
+        <th>FRI</th>
+        <th>SAT</th>
+        <th>SUN</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+    </table> -->
+    </div>
+</%block>
