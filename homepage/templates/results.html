@@ -2,19 +2,23 @@
 
 <%block name="content">
     <div class="container">
-        <br>
-        <h1 class="text-center">Analysis Successful!</h1>
-        <br>
-        <div class="text-center">
-            <h5>Your ideal tweet time is:</h5>
-            <h3><strong>${primetime['Day']}</strong> @ <strong>${ primetime['Hour']}:00</strong></h3>
-            <br>
-            <h5>Your estimated retweet count is:</h5>
-            <h3><strong>${primetime['RetweetCount']}</strong></h3>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                    <h2 class="text-center h1 py-5">Analysis Successful!</h2>
+                    <br>
+                    <div class="text-center" style="font-family:sans-serif;">
+                        <h5 style="font-family:sans-serif;">Your ideal tweet time is:</h5>
+                        <h3 style="color:#29ABE2"><strong>${primetime['Day']}</strong> @ <strong>${ primetime['Hour']}:00</strong></h3>
+                        <hr>
+                        <h5 style="font-family:sans-serif;">Your estimated retweet count is:</h5>
+                        <h3 style="color:#29ABE2"><strong>${primetime['RetweetCount']}</strong></h3>
+                        <hr>
+                    </div>
+                    <br>
+                    <h4 class="text-center"> Full Results </h4>
+                    <br />
+            </div>
         </div>
-        <br>
-        <h4 class="text-center"> Full Results </h4>
-        <br />
 
         <div class="row">
             <div class="col-md-8 offset-md-2">
@@ -26,9 +30,33 @@
                             </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse">
-                            % for item in sunday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ sunday[item] }</strong> </div>
-                            %endfor
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3 offset-md-3">
+                                    <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                    <hr style="margin:2px;"> 
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                    <hr style="margin:2px;">
+                                </div>
+                            </div>
+
+                            <div class="row" style="font-family:sans-serif;">
+                                <div class="col-md-3 offset-md-3">
+                                    % for item in sunday:
+                                        <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                        <hr style="margin:2px;">
+                                    %endfor
+                                </div>
+                                <div class="col-md-3">
+                                    % for item in sunday:
+                                        <div class="panel-body d-flex justify-content-center">${ sunday[item] } </div>
+                                        <hr style="margin:2px;">
+                                    %endfor
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -38,10 +66,34 @@
                             </h4>
                         </div>
                         <div id="collapse2" class="panel-collapse collapse">
-                            % for item in monday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ monday[item] }</strong> </div>
-                            %endfor
-                        </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                        <hr style="margin:2px;"> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                        <hr style="margin:2px;">
+                                    </div>
+                                </div>
+    
+                                <div class="row" style="font-family:sans-serif;">
+                                    <div class="col-md-3 offset-md-3">
+                                        % for item in monday:
+                                            <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                    <div class="col-md-3">
+                                        % for item in monday:
+                                            <div class="panel-body d-flex justify-content-center">${ monday[item] } </div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                </div>
+    
+                            </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading d-flex justify-content-center">
@@ -50,10 +102,34 @@
                             </h4>
                         </div>
                         <div id="collapse3" class="panel-collapse collapse">
-                            % for item in tuesday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ tuesday[item] }</strong> </div>
-                            %endfor
-                        </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                        <hr style="margin:2px;"> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                        <hr style="margin:2px;">
+                                    </div>
+                                </div>
+    
+                                <div class="row" style="font-family:sans-serif;">
+                                    <div class="col-md-3 offset-md-3">
+                                        % for item in tuesday:
+                                            <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                    <div class="col-md-3">
+                                        % for item in tuesday:
+                                            <div class="panel-body d-flex justify-content-center">${ tuesday[item] } </div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                </div>
+    
+                            </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading d-flex justify-content-center">
@@ -61,11 +137,35 @@
                                 <a data-toggle="collapse" href="#collapse4">Wednesday</a>
                             </h4>
                         </div>
-                        <div id="collapse4" class="panel-collapse collapse">
-                            % for item in wednesday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ wednesday[item] }</strong> </div>
-                            %endfor
-                        </div>
+                        <div id="collapse4wednesday" class="panel-collapse collapse">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                        <hr style="margin:2px;"> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                        <hr style="margin:2px;">
+                                    </div>
+                                </div>
+    
+                                <div class="row" style="font-family:sans-serif;">
+                                    <div class="col-md-3 offset-md-3">
+                                        % for item in wednesday:
+                                            <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                    <div class="col-md-3">
+                                        % for item in wednesday:
+                                            <div class="panel-body d-flex justify-content-center">${ wednesday[item] } </div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                </div>
+    
+                            </div>
                     </div>   
                     <div class="panel panel-default">
                         <div class="panel-heading d-flex justify-content-center">
@@ -74,10 +174,34 @@
                             </h4>
                         </div>
                         <div id="collapse5" class="panel-collapse collapse">
-                            % for item in thursday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ thursday[item] }</strong> </div>
-                            %endfor
-                        </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                        <hr style="margin:2px;"> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                        <hr style="margin:2px;">
+                                    </div>
+                                </div>
+    
+                                <div class="row" style="font-family:sans-serif;">
+                                    <div class="col-md-3 offset-md-3">
+                                        % for item in thursday:
+                                            <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                    <div class="col-md-3">
+                                        % for item in thursday:
+                                            <div class="panel-body d-flex justify-content-center">${ thursday[item] } </div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                </div>
+    
+                            </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading d-flex justify-content-center">
@@ -86,10 +210,34 @@
                             </h4>
                         </div>
                         <div id="collapse6" class="panel-collapse collapse">
-                            % for item in friday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ friday[item] }</strong> </div>
-                            %endfor
-                        </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                        <hr style="margin:2px;"> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                        <hr style="margin:2px;">
+                                    </div>
+                                </div>
+    
+                                <div class="row" style="font-family:sans-serif;">
+                                    <div class="col-md-3 offset-md-3">
+                                        % for item in friday:
+                                            <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                    <div class="col-md-3">
+                                        % for item in friday:
+                                            <div class="panel-body d-flex justify-content-center">${ friday[item] } </div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                </div>
+    
+                            </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading d-flex justify-content-center">
@@ -98,10 +246,34 @@
                             </h4>
                         </div>
                         <div id="collapse7" class="panel-collapse collapse">
-                            % for item in saturday:
-                                <div class="panel-body d-flex justify-content-center">Hour <strong>${item}:00</strong> | Retweet Count <strong>${ saturday[item] }</strong> </div>
-                            %endfor
-                        </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Hour</div>  
+                                        <hr style="margin:2px;"> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="panel-body d-flex justify-content-center">Retweet Count</div>   
+                                        <hr style="margin:2px;">
+                                    </div>
+                                </div>
+    
+                                <div class="row" style="font-family:sans-serif;">
+                                    <div class="col-md-3 offset-md-3">
+                                        % for item in saturday:
+                                            <div class="panel-body d-flex justify-content-center">${item}:00</div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                    <div class="col-md-3">
+                                        % for item in saturday:
+                                            <div class="panel-body d-flex justify-content-center">${ saturday[item] } </div>
+                                            <hr style="margin:2px;">
+                                        %endfor
+                                    </div>
+                                </div>
+    
+                            </div>
                     </div>   
             
                 </div>     

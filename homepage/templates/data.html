@@ -2,16 +2,19 @@
 
 <%block name="content">
     <div class="container">
-        <div class="row" style="height:50px;"></div>
+        <h2 class="text-center h1 py-5">See the Data</h2>
         <div class="row">
+            <br />
             <div class="col-md-2">
+                <h5>Filter Data</h5>
+                <input type="button" class="btn btn-primary m-1" value="ClearFilter(s)" onclick="clearFilters();"/>
+                <br>
+                <input type="button" class="btn btn-primary m-1" value="US" onclick="filterUS();"/>
+                <br>
+                <input type="button" class="btn btn-primary m-1" value="Other" onclick="filterother();"/>
             </div>
-            <div class="col-md-8">
-                <h1 class="d-flex justify-content-center">See the Data</h1>
-                <br />
-                <br />
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-10">
+                <div id="tableauviz" style="display:flex;width:100%"></div>
             </div>
         </div>
     </div>

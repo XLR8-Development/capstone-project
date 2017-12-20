@@ -91,7 +91,7 @@ def process_request(request):
 
                     print(retweetCount) 
 
-                except urllib.request.HTTPError:
+                except urllib.request.HTTPError as error:
                     print("The request failed with status code: " + str(error.code))
 
                     # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
