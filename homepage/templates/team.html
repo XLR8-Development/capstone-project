@@ -1,7 +1,11 @@
 <%inherit file="base.htm" />
 
 <%block name="content">
-    <div class="container">
+  <link rel="stylesheet" href="${ STATIC_URL }homepage/styles/compiled.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="${ STATIC_URL }homepage/styles/team.css">
+  <script src="${ STATIC_URL }homepage/scripts/compiled.min.js"></script>
+    <!-- <div class="container">
         <div class="row" style="height:50px;"></div>
         <div class="row">
             <div class="col-md-1">
@@ -48,5 +52,335 @@
             <div class="col-md-1">
             </div>
         </div>
+    </div> -->
+ <!--Section: Team v.4-->
+ <section class="section pb-5">
+        
+    <!--Section heading-->
+    <h2 class="text-center h1 py-5">Our Amazing Team</h2>
+    <!--Section description-->
+    <!-- <p class="section-description"></p> -->
+
+    <div class="row" style="margin:20px;">
+
+    <!--Grid column-->
+    <div class="col-lg-3 col-md-12 mb-r">
+
+        <!--Rotating card-->
+        <div class="card-wrapper">
+        <div id="card-1" class="card-rotating effect__click">
+
+            <!--Front Side-->
+            <div class="face front">
+
+            <!-- Image-->
+            <div class="card-up">
+                <img src="https://images.unsplash.com/photo-1418835817666-45fa43c32666?auto=format&fit=crop&w=1650&q=80" alt="Team member card image">
+            </div>
+
+            <!--Avatar-->
+            <div class="avatar">
+                <img src="${ STATIC_URL }homepage/media/klynt250.png" class="rounded-circle img-responsive" alt="First sample avatar image">
+            </div>
+
+            <!--Content-->
+            <div class="card-body">
+                <h4 class="mt-1">Klynt Yardley</h4>
+                <p class="font-bold dark-grey-text">CSO at XLR8 Development</p>
+                <!--Triggering button-->
+                <a class="rotate-btn grey-text" data-card="card-1">
+                <i class="fa fa-repeat grey-text"></i> Click to see bio</a>
+            </div>
+
+            </div>
+            <!--Front Side-->
+
+            <!--Back Side-->
+            <div class="face back">
+
+            <!--Content-->
+            <h4 class="font-bold mt-4 mb-2">
+                <strong>About me</strong>
+            </h4>
+            <hr>
+            <p>Hi my name is Klynt Yardley. I am from Beaver, Utah, population 7, including our cow. I am currently a Master of Information Systems Management student at Brigham Young University. I enjoys traveling, hiking, skiing and my girlfriend Carly.
+            </p>
+            <hr>
+            <!--Social Icons-->
+            <ul class="inline-ul list-unstyled">
+                <li>
+                <a class="icons-sm fb-ic">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm pin-ic">
+                    <i class="fa fa-pinterest"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm ins-ic">
+                    <i class="fa fa-instagram"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm tw-ic">
+                    <i class="fa fa-twitter"> </i>
+                </a>
+                </li>
+            </ul>
+            <!--Triggering button-->
+            <a class="rotate-btn grey-text" data-card="card-1">
+                <i class="fa fa-repeat grey-text"></i> Click here to rotate back</a>
+
+            </div>
+            <!--Back Side-->
+
+        </div>
+        </div>
+        <!--Rotating card-->
+
     </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-3 col-md-12 mb-r">
+
+        <!--Rotating card-->
+        <div class="card-wrapper">
+        <div id="card-2" class="card-rotating effect__click">
+
+            <!--Front Side-->
+            <div class="face front">
+
+            <!-- Image-->
+            <div class="card-up">
+                <img src="https://images.unsplash.com/photo-1493679756707-21f12da1a0c2?auto=format&fit=crop&w=1652&q=80" alt="Team member card image">
+            </div>
+
+            <!--Avatar-->
+            <div class="avatar">
+                <img src="${ STATIC_URL }homepage/media/matt250.png" class="rounded-circle img-responsive" alt="Second sample avatar image">
+            </div>
+
+            <!--Content-->
+            <div class="card-body">
+                <h4 class="mt-1">Matthew Christensen</h4>
+                <p class="font-bold dark-grey-text">CTO at XLR8 Development</p>
+                <!--Triggering button-->
+                <a class="rotate-btn grey-text" data-card="card-2">
+                <i class="fa fa-repeat grey-text"></i> Click to see bio</a>
+            </div>
+
+            </div>
+            <!--Front Side-->
+
+            <!--Back Side-->
+            <div class="face back">
+
+            <!--Content-->
+            <h4 class="font-bold mt-4 mb-2">
+                <strong>About me</strong>
+            </h4>
+            <hr>
+            <p>My name is Matthew L. Christensen. I am from Santa Monica, California. I am currently a Master of Information Systems Management student at Brigham Young University. I am a proud supporter of #NetNeutrality and Utah Football.
+            </p>
+            <hr>
+            <!--Social Icons-->
+            <ul class="inline-ul list-unstyled">
+                <li>
+                <a class="icons-sm fb-ic">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm pin-ic">
+                    <i class="fa fa-pinterest"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm ins-ic">
+                    <i class="fa fa-instagram"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm tw-ic">
+                    <i class="fa fa-twitter"> </i>
+                </a>
+                </li>
+            </ul>
+            <!--Triggering button-->
+            <a class="rotate-btn grey-text" data-card="card-2">
+                <i class="fa fa-repeat grey-text"></i> Click here to rotate back</a>
+
+            </div>
+            <!--Back Side-->
+
+        </div>
+        </div>
+        <!--Rotating card-->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-3 col-md-12 mb-r">
+
+        <!--Rotating card-->
+        <div class="card-wrapper">
+        <div id="card-3" class="card-rotating effect__click">
+
+            <!--Front Side-->
+            <div class="face front">
+
+            <!-- Image-->
+            <div class="card-up">
+                <img src="https://images.unsplash.com/46/iYvDeqVGRbebiQv2PIJi_DSC_8407.JPG?auto=format&fit=crop&w=1653&q=80" alt="Team member card image">
+            </div>
+
+            <!--Avatar-->
+            <div class="avatar">
+                <img src="${ STATIC_URL }homepage/media/jess250.png" class="rounded-circle img-responsive" alt="Third sample avatar image">
+            </div>
+
+            <!--Content-->
+            <div class="card-body">
+                <h4 class="mt-1">Jessee Clapier</h4>
+                <p class="font-bold dark-grey-text">CIO at XLR8 Development</p>
+                <!--Triggering button-->
+                <a class="rotate-btn grey-text" data-card="card-3">
+                <i class="fa fa-repeat grey-text"></i> Click to see bio</a>
+            </div>
+
+            </div>
+            <!--Front Side-->
+
+            <!--Back Side-->
+            <div class="face back">
+
+            <!--Content-->
+            <h4 class="font-bold mt-4 mb-2">
+                <strong>About me</strong>
+            </h4>
+            <hr>
+            <p>My name is Jessee Clapier. I am from Salt Lake City, Utah. I am currently a Bachelors of Informations Systems student at Brigham Young University. I love my wife, Utah Football and all things outdoors.
+            </p>
+            <hr>
+            <!--Social Icons-->
+            <ul class="inline-ul list-unstyled">
+                <li>
+                <a class="icons-sm fb-ic">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm pin-ic">
+                    <i class="fa fa-pinterest"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm ins-ic">
+                    <i class="fa fa-instagram"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm tw-ic">
+                    <i class="fa fa-twitter"> </i>
+                </a>
+                </li>
+            </ul>
+            <!--Triggering button-->
+            <a class="rotate-btn grey-text" data-card="card-3">
+                <i class="fa fa-repeat grey-text"></i> Click here to rotate back</a>
+
+            </div>
+            <!--Back Side-->
+
+        </div>
+        </div>
+        <!--Rotating card-->
+
+    </div>
+    <!--Grid column-->
+    <div class="col-lg-3 col-md-12 mb-r">
+
+        <!--Rotating card-->
+        <div class="card-wrapper">
+        <div id="card-4" class="card-rotating effect__click">
+
+            <!--Front Side-->
+            <div class="face front">
+
+            <!-- Image-->
+            <div class="card-up">
+                <img src="https://images.unsplash.com/photo-1510711547938-04fb9010e471?auto=format&fit=crop&w=1650&q=80" alt="Team member card image">
+            </div>
+
+            <!--Avatar-->
+            <div class="avatar">
+                <img src="${ STATIC_URL }homepage/media/jaden250.png" class="rounded-circle img-responsive" alt="Third sample avatar image">
+            </div>
+
+            <!--Content-->
+            <div class="card-body">
+                <h4 class="mt-1">Jaden Feddock</h4>
+                <p class="font-bold dark-grey-text">CEO at XLR8 Development</p>
+                <!--Triggering button-->
+                <a class="rotate-btn grey-text" data-card="card-4">
+                <i class="fa fa-repeat grey-text"></i> Click here to rotate</a>
+            </div>
+
+            </div>
+            <!--Front Side-->
+
+            <!--Back Side-->
+            <div class="face back">
+
+            <!--Content-->
+            <h4 class="font-bold mt-4 mb-2">
+                <strong>About me</strong>
+            </h4>
+            <hr>
+            <p>My name is Jaden Feddock. I am from somewhere in Arizona. I am a future Accenture Technology Consultant. I love summer sales and am always up for a good conversation about tech.
+            </p>
+            <hr>
+            <!--Social Icons-->
+            <ul class="inline-ul list-unstyled">
+                <li>
+                <a class="icons-sm fb-ic">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm pin-ic">
+                    <i class="fa fa-pinterest"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm ins-ic">
+                    <i class="fa fa-instagram"> </i>
+                </a>
+                </li>
+                <li>
+                <a class="icons-sm tw-ic">
+                    <i class="fa fa-twitter"> </i>
+                </a>
+                </li>
+            </ul>
+            <!--Triggering button-->
+            <a class="rotate-btn grey-text" data-card="card-4">
+                <i class="fa fa-repeat grey-text"></i> Click here to rotate back</a>
+
+            </div>
+            <!--Back Side-->
+
+        </div>
+        </div>
+        <!--Rotating card-->
+
+    </div>
+    </div>
+
+</section>
+<!--Section: Team v.4-->
 </%block>

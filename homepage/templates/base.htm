@@ -15,23 +15,25 @@
         <script src="/django_mako_plus/dmp-common.min.js"></script>
         ${ django_mako_plus.links(self) }
 
+        <link rel="icon" type="image/png" sizes="32x32"href="${ STATIC_URL }homepage/media/twitwitlogo-02.png">
+
     </head>
     <body>
 
         <header>
-            <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="box-shadow:none;">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="index">
                     <img src="${ STATIC_URL }homepage/media/twitwitlogo-02.png" width="30" height="30" class="" alt="">
-                    TwitWit&reg; <span style="font-size: 60%">by XLR8 Development</span>
+                    TwitWit&reg; <span style="font-size: 60%; font-family:sans-serif;">by XLR8 Development</span>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Our Team</a>
-                    <a class="nav-item nav-link" href="#">The Data</a>
+                    <a class="nav-item nav-link active" href="index">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="team">Our Team</a>
+                    <a class="nav-item nav-link" href="data">The Data</a>
                   </div>
                 </div>
               </nav>
