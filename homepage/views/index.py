@@ -24,7 +24,16 @@ def process_request(request):
     if form.is_valid():
         form.commit()
         messages.success(request, 'Your text was submitted.')
-        return HttpResponseRedirect('/homepage/index.recommendations')
+
+    TimeResultArray = []
+
+    for i in range(0,24):
+        tempResult = TimeResult(str(i) + ":00", random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100))
+        TimeResultArray.append(tempResult)
+
+    template_name = "index.html"
+    if request.method == "POST":
+        template_name = "index.recommendations.html"
 
     context = {
         # sent to index.html:
@@ -32,9 +41,12 @@ def process_request(request):
         # sent to index.html and index.js:
         jscontext('utc_epoch'): utc_time.timestamp(),
         'form': form,
+        'result_time' : '4:00PM',
+        'result_date' : 'WED, 12/14/2017',
+        'full_results' : TimeResultArray,
     }
 
-    return request.dmp_render('index.html', context)
+    return request.dmp_render(template_name, context)
 
 
 class TimeResult(object):
@@ -59,22 +71,22 @@ class TimeResult(object):
         self.sat = sat
         self.sun = sun
 
-@view_function
-def recommendations(request):
-
-    TimeResultArray = []
-
-    for i in range(0,24):
-        tempResult = TimeResult(str(i) + ":00", random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100))
-        TimeResultArray.append(tempResult)
-
-
-    context = {
-        'result_time' : '4:00PM',
-        'result_date' : 'WED, 12/14/2017',
-        'full_results' : TimeResultArray,
-    }
-    return request.dmp_render('index.recommendations.html', context)
+# @view_function
+# def recommendations(request):
+#
+#     TimeResultArray = []
+#
+#     for i in range(0,24):
+#         tempResult = TimeResult(str(i) + ":00", random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100), random.randrange(100))
+#         TimeResultArray.append(tempResult)
+#
+#
+#     context = {
+#         'result_time' : '4:00PM',
+#         'result_date' : 'WED, 12/14/2017',
+#         'full_results' : TimeResultArray,
+#     }
+#     return request.dmp_render('index.recommendations.html', context)
 
 
 class InputForm(FormMixIn, forms.Form):

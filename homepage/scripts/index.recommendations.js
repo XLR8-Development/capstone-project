@@ -12,7 +12,11 @@
 })(DMP_CONTEXT.get());
 
 $(function() {
+  var options = {
+      target: '#ajax_test',
+  }
 
+  $('#formlib-inputform').ajaxForm(options);
 })
 
 // Function for counting characters
@@ -26,6 +30,7 @@ $("#id_tweet").on('input', function(){
       $('#charNum').css('color', '#ff0000');
     }
 });
+
 
 
 // update button
