@@ -30,6 +30,7 @@ def process_request(request):
         form.commit()
         formData = form.cleaned_data
         tweet = formData['tweet']
+        isReshare = 0
         hour = 0
         MonDict = {}
         TuesDict = {}
@@ -42,6 +43,10 @@ def process_request(request):
         DayDict = {}
         maxDict = {'Day': 'Monday', 'Hour': 0, 'RetweetCount': 0}
         currentMax = 0
+        if formData['subject'] == 'Original':
+            isReshare = 0
+        elif formData['subject'] == 'Reshare':
+            isReshare = 1
 
         # create all the variables and make all the api calls!
         for day in DaysList:
@@ -56,7 +61,7 @@ def process_request(request):
                             "input1":
                             {
                                 "ColumnNames": ["Weekday", "Hour", "IsReshare", "RetweetCount", "Country", "text"],
-                                "Values": [ [ day, hour, "1", "0", "United States", tweet ] ]
+                                "Values": [ [ day, hour, isReshare, "0", "United States", tweet ] ]
                             },        },
                         "GlobalParameters": {
                     }
@@ -257,18 +262,17 @@ def recommendations(request):
 
 class InputForm(FormMixIn, forms.Form):
     form_submit = 'Analyze Tweet'
-    # SUBJECT_CHOICES = [
-    #     [ 'Inquiry', 'I want to know more about XLR8'],
-    #     [ 'Estimate', "I need an estimate for my awesome project"],
-    #     [ 'Support', 'I have a technical issue'],
-    #     ['Other', 'Other'],
-    # ]
+    SUBJECT_CHOICES = [
+        [ 'Original', 'This is an original Tweet'],
+        [ 'Reshare', "This is a reshare"],
+    ]
 
     def init(self):
+        self.fields['subject'] = forms.ChoiceField(label='Tweet Type', choices=InputForm.SUBJECT_CHOICES)
         self.fields['tweet'] = forms.CharField(label='Enter Tweet', max_length=140)
         # self.fields['phone'] = forms.CharField(label="Phone", required=False, max_length=100)
         # self.fields['email'] = forms.EmailField(label='Email (required)', required=True, max_length=100)
-        # self.fields['subject'] = forms.ChoiceField(label='Subject', choices=InputForm.SUBJECT_CHOICES)
+
         # self.fields['message'] = forms.CharField(label='Message (required)', max_length=1000,
         #     widget=forms.Textarea())
 
@@ -285,7 +289,7 @@ class InputForm(FormMixIn, forms.Form):
     def commit(self):
         tweet = self.cleaned_data.get('tweet')
         # from_email = self.cleaned_data.get('email')
-        # subject = self.cleaned_data.get('subject')
+        subject = self.cleaned_data.get('subject')
         # message = self.cleaned_data.get('message')
         # to_email = 'info@xlr8dev.com'
         # #info@xlr8dev.com

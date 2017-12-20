@@ -7,21 +7,31 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <h1 class="d-flex justify-content-center">Welcome to TwitWit&reg;</h1>
-                <h5 class="d-flex justify-content-center">The Most Intelligent Twitter Scheduler. Ever.</h5>
+                <img src="${ STATIC_URL }homepage/media/landinggraphic-01.svg" class="img-responsive" alt="">
                 <br />
                 <br />
+                <div style="height:200px; color:black; margin-bottom:100px;" class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-arrow-circle-down fa-4x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Tweet Analysis</h1>
+                <hr>
                 <p id="charNum"></p>
                 <span class="inputText">
                     ${ form }
                 </span>
                 <br />
+                <h5 class="text-center">Please be patient as analysis can take a couple of minutes.</h5>
                 <br />
                 <p id="ajax_test">
                 </p>
             </div>
-            <div class="col-md-2">
-            </div>
+        </div>
+        <div class="row" style="height:200px;">
+            
         </div>
     </div>
 </%block>
