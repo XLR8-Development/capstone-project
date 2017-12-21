@@ -259,7 +259,7 @@ def process_request(request):
         'sunday' :SunDict,
     }
 
-    return request.dmp_render('results.html', context)
+    return request.dmp_render('/results.html', context)
 
 
 class TimeResult(object):

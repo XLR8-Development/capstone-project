@@ -26,5 +26,5 @@ html, body {
 
 @font-face {
   font-family: "Coolvetica";
-  src: url("${ STATIC_URL }homepage/media/coolveticarg.ttf");
+  src: url("coolveticarg.ttf");
 }
