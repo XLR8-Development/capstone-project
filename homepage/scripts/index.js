@@ -8,6 +8,7 @@
 
 $(function() {
 
+  console.log('Test');
 })
 
 // Function for counting characters

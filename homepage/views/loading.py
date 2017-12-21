@@ -24,32 +24,44 @@ import operator
 def process_request(request):
     utc_time = datetime.utcnow()
 
-    form = InputForm(request)
+    # form = InputForm(request)
 
-    if form.is_valid():
-        form.commit()
-        formData = form.cleaned_data
-        tweet = formData['tweet']
-        isReshare = 0
-        hour = 0
-        MonDict = {}
-        TuesDict = {}
-        WedDict = {}
-        ThursDict = {}
-        FriDict = {}
-        SatDict = {}
-        SunDict = {}
-        DaysList = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        DayDict = {}
-        maxDict = {'Day': 'Monday', 'Hour': 0, 'RetweetCount': 0}
-        currentMax = 0
-        if formData['subject'] == 'Original':
-            isReshare = 0
-        elif formData['subject'] == 'Reshare':
-            isReshare = 1
+    tweet = request.session['tweet']
+    isReshare = request.session['isReshare']
+    hour = request.session['hour']
+    DaysList = request.session['DaysList']
+    DayDict = request.session['DayDict']
+    maxDict = request.session['maxDict']
+    currentMax = request.session['currentMax']
+    MonDict = request.session['MonDict']
+    TuesDict = request.session['TuesDict']
+    WedDict = request.session['WedDict']
+    ThursDict = request.session['ThursDict']
+    FriDict = request.session['FriDict']
+    SatDict = request.session['SatDict']
+    SunDict = request.session['SunDict']
+
+    if len(DayDict) < 7:
+        # tweet = formData['tweet']
+        # isReshare = 0
+        # hour = 0
+        # MonDict = {}
+        # TuesDict = {}
+        # WedDict = {}
+        # ThursDict = {}
+        # FriDict = {}
+        # SatDict = {}
+        # SunDict = {}
+        # DaysList = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        # DayDict = {}
+        # maxDict = {'Day': 'Monday', 'Hour': 0, 'RetweetCount': 0}
+        # currentMax = 0
+
+
 
         # create all the variables and make all the api calls!
-        day = DaysList[0]
+        day = DaysList[len(DayDict)]
+
         hour = 0
         # make call for each hour
         while hour <= 23:
@@ -207,6 +219,14 @@ def process_request(request):
         #     'sunday' :SunDict,
         # }
 
+        # request.session['tweet'] = tweet
+        # request.session['resultDict'] = resultDict
+        # request.session['daysList'] = daysList
+        # request.session['retweetCountRounded'] = retweetCountRounded
+        # request.session['full_results'] = full_results
+        # request.session['primetime'] = primetime
+        # request.session['DayDict'] = DayDict
+
         request.session['tweet'] = tweet
         request.session['isReshare'] = isReshare
         request.session['hour'] = hour
@@ -222,17 +242,24 @@ def process_request(request):
         request.session['SatDict'] = SatDict
         request.session['SunDict'] = SunDict
 
+
         return HttpResponseRedirect('/homepage/loading/')
 
     context = {
-        # sent to index.html:
-        'utc_time': utc_time,
-        # sent to index.html and index.js:
-        jscontext('utc_epoch'): utc_time.timestamp(),
-        'form':form,
+        'tweet':tweet,
+        'daysList' :DaysList,
+        'full_results' : DayDict,
+        'primetime' : maxDict,
+        'monday' : MonDict,
+        'tuesday' :TuesDict,
+        'wednesday' : WedDict,
+        'thursday' : ThursDict,
+        'friday' : FriDict,
+        'saturday' : SatDict,
+        'sunday' :SunDict,
     }
 
-    return request.dmp_render('index.html', context)
+    return request.dmp_render('results.html', context)
 
 
 class TimeResult(object):
